@@ -75,3 +75,16 @@ qtriang <- function(p, min, max, mode) {
 
   res
 }
+
+#' Random generation
+#'
+#' @param n sample size
+#' @param min lower bound
+#' @param max upper bound
+#' @param mode mode
+#' @return random sample
+#' @export
+rtriang <- function(n, min, max, mode) {
+  u <- runif(n)
+  qtriang(u, min, max, mode)
+}
