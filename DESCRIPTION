@@ -1,13 +1,20 @@
 Package: triangdist
-Title: What the Package Does (One Line, Title Case)
+Title: Tools for the Triangular Distribution
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Carlos", "Albiach", , "caralmel@alumni.uv.es", role = c("aut", "cre"))
+Description: Provides functions for the triangular distribution, including 
+    density, distribution function, quantile function and random generation.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 URL: https://github.com/caralmel/triangdist
 BugReports: https://github.com/caralmel/triangdist/issues
+Imports: 
+    stats
+Suggests: 
+    testthat (>= 3.0.0),
+    covr,
+    lintr
+Config/testthat/edition: 3
