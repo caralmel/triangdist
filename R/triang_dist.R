@@ -48,3 +48,30 @@ ptriang <- function(q, min, max, mode) {
 
   res
 }
+
+#' Triangular quantile function
+#'
+#' @param p probabilities
+#' @param min lower bound
+#' @param max upper bound
+#' @param mode mode
+#' @return quantiles
+#' @export
+qtriang <- function(p, min, max, mode) {
+
+  if (any(p < 0 | p > 1)) stop("p must be in [0,1]")
+  if (min >= max) stop("min must be < max")
+  if (mode < min || mode > max) stop("mode must be between min and max")
+
+  pc <- (mode - min) / (max - min)
+
+  res <- numeric(length(p))
+
+  left <- p <= pc
+  right <- p > pc
+
+  res[left] <- min + sqrt(p[left] * (max - min) * (mode - min))
+  res[right] <- max - sqrt((1 - p[right]) * (max - min) * (max - mode))
+
+  res
+}
