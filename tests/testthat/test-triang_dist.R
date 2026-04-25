@@ -1,23 +1,27 @@
-
-test_that("dtriang calcula la densidad correctamente", {
-  expect_equal(dtriang(0.5, min = 0, max = 1, mode = 0.5), 2)
-  expect_equal(dtriang(-1, min = 0, max = 1, mode = 0.5), 0)
-  expect_equal(dtriang(2, min = 0, max = 1, mode = 0.5), 0)
+test_that("dtriang handles density and errors", {
+  expect_equal(dtriang(0.5, 0, 1, 0.5), 2)
+  expect_equal(dtriang(-1, 0, 1, 0.5), 0)
+  expect_error(dtriang(0.5, min = 1, max = 0, mode = 0.5))
+  expect_error(dtriang(0.5, min = 0, max = 1, mode = 2))
 })
 
-test_that("ptriang calcula la probabilidad acumulada", {
-  expect_equal(ptriang(1, min = 0, max = 1, mode = 0.5), 1)
-  expect_equal(ptriang(0, min = 0, max = 1, mode = 0.5), 0)
+test_that("ptriang handles distribution and errors", {
+  expect_equal(ptriang(0, 0, 1, 0.5), 0)
+  expect_equal(ptriang(1, 0, 1, 0.5), 1)
+  expect_equal(ptriang(0.5, 0, 1, 0.5), 0.5)
+  expect_error(ptriang(0.5, 1, 0, 0.5))
 })
 
-test_that("Errores y validaciones funcionan", {
-  expect_error(dtriang(0.5, min = 10, max = 5, mode = 7))
-  expect_error(dtriang(0.5, min = 0, max = 1, mode = 1.5))
+test_that("qtriang handles quantiles and errors", {
+  expect_equal(qtriang(0, 0, 1, 0.5), 0)
+  expect_equal(qtriang(1, 0, 1, 0.5), 1)
+  expect_error(qtriang(-0.1, 0, 1, 0.5))
+  expect_error(qtriang(1.1, 0, 1, 0.5))
 })
 
-test_that("rtriang genera valores consistentes", {
-  n <- 100
-  samples <- rtriang(n, min = 0, max = 1, mode = 0.5)
+test_that("rtriang produces consistent results", {
+  n <- 50
+  samples <- rtriang(n, 0, 1, 0.5)
   expect_length(samples, n)
   expect_true(all(samples >= 0 & samples <= 1))
 })
