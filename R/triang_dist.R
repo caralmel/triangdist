@@ -83,6 +83,7 @@ qtriang <- function(p, min, max, mode) {
 #' @param max upper bound
 #' @param mode mode
 #' @return random sample
+#' @importFrom stats runif
 #' @export
 rtriang <- function(n, min, max, mode) {
   u <- runif(n)
