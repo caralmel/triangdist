@@ -12,5 +12,5 @@ El paquete implementa las cuatro funciones estándar de una distribución en R:
 ## Instalación
 Puedes instalarlo directamente desde GitHub usando:
 ```r
-# install.packages("remotes")
+install.packages("remotes")
 remotes::install_github("caralmel/triangdist")
